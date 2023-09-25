@@ -1,0 +1,142 @@
+<html>
+<head>
+<title>Dictionary</title>
+</head>
+
+
+<style>
+body{
+  background-image: url("dictionary.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+h2{
+text-align:center;
+}
+
+#head{
+border:2px solid black;
+width:50%;
+height:300px;
+margin-left:25%;
+padding:30px;
+font-weight:bold;
+font-size:30px;
+box-shadow:10px 10px 10px;
+background-color:RGB(124,222,224);
+}
+
+input{
+padding:6px;
+width:500px;
+
+}
+
+#meaning{
+border:2px solid black;
+box-shadow:10px 10px 5px;
+background-color:white;
+}
+
+button{
+background-color:purple;
+width:150px;
+height:30px;
+}
+
+h1{
+text-align:center;
+margin: 100px;
+
+}
+
+.send{
+border: 2px solid blue;
+height:200px;
+width:500px;
+margin-left:500px;
+padding:20px;
+padding-left:70px;
+paddind-top:30px;
+background-color:RGB(240,223,240);
+opacity:0.5;
+}
+
+.word{
+border: 2px solid blue;
+height:200px;
+width:100%;
+padding:2px;
+padding-left:90px;
+paddind-top:40px;
+background-color:white;
+opacity:0.2px;
+
+}
+
+label{
+font-size:20px;
+font-weight:bold;
+}
+
+#Submit{
+
+}
+
+
+</style>
+
+
+
+<body>
+	<h1> Welcome to the Dictionary App</h1>
+	
+	<form>
+	<div class ="send">
+	<label>Enter word:</label>
+	<input type = "text" id = "word">
+	<br><br>
+	<button value = "submit" id = "submit">Submit</button>
+	
+	</div>
+	
+	</form>
+		<div class="word">
+			<p>word</p><p><span id = "wordmeaning"></span> :   <span id = "definition"></span></p>
+		</div>
+	
+	<script>
+	const options = {
+	method: 'GET',
+	headers: {
+		'X-RapidAPI-Key': '126bbf7ef1mshb1e2d02eaa982d9p1529c7jsncc06e7d5ef27',
+		'X-RapidAPI-Host': 'dictionary-by-api-ninjas.p.rapidapi.com'
+	}
+};
+
+const dictionary = (word) => {
+	wordmeaning.innerHTML = word
+	fetch('https://dictionary-by-api-ninjas.p.rapidapi.com/v1/dictionary?word='+word ,options)
+	.then( (response) => response.json())
+	.then( (data) => { console.log(data)
+	
+	definition.innerHTML = data.definition
+	
+	})
+	
+}
+	
+	submit.addEventListener("click", (e) => {
+	e.preventDefault()
+	dictionary(word.value)
+	})
+	
+	dictionary("happy")
+	
+	</script>
+	
+</body>
+
+
+</html>
